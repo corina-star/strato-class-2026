@@ -72,9 +72,9 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
       </div>
     </div>
     <div class="facts" style="margin-top:16px">
-      <div class="fact"><b>$50</b><span>per signature</span></div>
+      <div class="fact"><b>$60</b><span>per signature: the engraving plus the tray</span></div>
       <div class="fact"><b>Executive Awards</b><span>Engraver: Gilson's Signature Tray, each signature hand cut</span></div>
-      <div class="fact"><b>GoFundMe</b><span>Money goes straight to Executive Awards, never to a member's account</span></div>
+      <div class="fact"><b>PayPal</b><span>A group-gift pool. No fee from a bank account or PayPal balance; cards carry a fee. No PayPal account needed.</span></div>
     </div>
   </div>
 
@@ -83,8 +83,8 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <ol class="steps">
       <li>Pick your name. Your crew number fills in.</li>
       <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF.</li>
-      <li>Tap the GoFundMe button and give $50, using the same name.</li>
-      <li>Paste your GoFundMe receipt or confirmation, then press Submit.</li>
+      <li>Tap the PayPal button and give $60, using the same name.</li>
+      <li>Paste your PayPal receipt or confirmation, then press Submit.</li>
     </ol>
   </div>
 
@@ -101,15 +101,15 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <input type="file" id="file" accept="image/png,image/jpeg,application/pdf" hidden>
     <img id="sigPreview" alt="Your signature">
 
-    <label>3 · Pay $50 on GoFundMe</label>
-    <a class="btn gold" id="gfm" target="_blank" rel="noopener">Open GoFundMe</a>
+    <label>3 · Give $60 on PayPal</label>
+    <a class="btn gold" id="gfm" target="_blank" rel="noopener">Open PayPal</a>
     <div class="hint" id="gfmNote" style="margin-top:6px"></div>
 
-    <label for="receipt">4 · Your GoFundMe receipt or confirmation <span class="hint">(paste it from your GoFundMe email)</span></label>
+    <label for="receipt">4 · Your PayPal receipt or confirmation <span class="hint">(copy it from PayPal's confirmation)</span></label>
     <input type="text" id="receipt" maxlength="200" placeholder="Paste here after you give">
 
     <ul class="need">
-      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">GoFundMe opened</li><li id="n4">Receipt pasted</li>
+      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">PayPal opened</li><li id="n4">Receipt pasted</li>
     </ul>
     <button class="btn go" id="submit" disabled>Submit my signature</button>
     <div class="msg" id="msg"></div>
@@ -127,7 +127,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 const SB='https://ihtddoaefacyovcxcqrh.supabase.co', KEY='sb_publishable_hlkXEbBKyp31yatdkZ7CuA_I93iqqBI';
-const GOFUNDME_URL=''; // set once the fundraiser exists
+const PAYPAL_URL=''; // the PayPal Pool link, set once the pool exists
 const H={apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'};
 const $=id=>document.getElementById(id);
 let roster=[],sig=null,opened=false;
@@ -161,8 +161,8 @@ function check(){
 $('who').onchange=()=>{const m=roster.find(x=>String(x.roster_id)===$('who').value);if(m&&!$('full').value)$('full').value=m.name;check()};
 $('full').oninput=check;$('receipt').oninput=check;
 
-if(GOFUNDME_URL){$('gfm').href=GOFUNDME_URL;$('gfm').onclick=()=>{opened=true;try{sessionStorage.setItem('gfmOpened','1')}catch(e){};setTimeout(check,300)}}
-else{$('gfm').classList.add('off');$('gfmNote').textContent='The GoFundMe link goes live here shortly.'}
+if(PAYPAL_URL){$('gfm').href=PAYPAL_URL;$('gfm').onclick=()=>{opened=true;try{sessionStorage.setItem('gfmOpened','1')}catch(e){};setTimeout(check,300)}}
+else{$('gfm').classList.add('off');$('gfmNote').textContent='The PayPal link goes live here shortly.'}
 
 $('drop').onclick=()=>$('file').click();
 $('file').onchange=async e=>{
@@ -192,7 +192,7 @@ $('submit').onclick=async()=>{
   const r=!up.ok?up:await fetch(SB+'/rest/v1/strato_signups',{method:'POST',headers:{...H,Prefer:'return=minimal'},
     body:JSON.stringify({roster_id:m.roster_id,full_name:$('full').value.trim(),crew:m.crew,receipt:$('receipt').value.trim(),signature:path})});
   $('submit').textContent='Submit my signature';
-  if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your GoFundMe gift is matched.',true);
+  if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your PayPal gift is matched.',true);
     sig=null;$('full').value='';$('receipt').value='';$('sigPreview').style.display='none';$('who').value='';load();}
   else{const t=await r.text();show(/duplicate|unique/i.test(t)?'This name has already signed. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
 };
