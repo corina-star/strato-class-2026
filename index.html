@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Stratosphere Class of 2026</title>
+<link rel="icon" href="img/mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e1220;--card:#171c2e;--line:#2a3150;--text:#eef0f5;--muted:#9aa3bd;--gold:#f4c62a;--ok:#3ecf8e;--warn:#f4c62a;--err:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:28px 16px 60px}
+h1,h2{font-family:Oswald,sans-serif;letter-spacing:.04em;text-transform:uppercase;margin:0}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.1}
+h2{font-size:22px;margin-bottom:12px}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:10px}
+.kicker img{width:34px}
+.lead{color:var(--muted);font-size:17px;margin:12px 0 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:22px}
+.hero img{width:100%;border-radius:12px;display:block}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.two img{width:100%;border-radius:10px;display:block;background:#fff}
+.cap{color:var(--muted);font-size:13px;margin-top:8px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.fact{border:1px solid var(--line);border-radius:10px;padding:12px}
+.fact b{display:block;font-family:Oswald;font-size:22px;color:var(--gold)}
+.fact span{color:var(--muted);font-size:13px}
+ol.steps{padding-left:20px;margin:0}ol.steps li{margin:6px 0}
+label{display:block;font-weight:600;margin:18px 0 6px}
+.hint{color:var(--muted);font-size:13px;font-weight:400}
+select,input[type=text]{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0b0f1b;color:var(--text);font:inherit}
+.crewtag{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:99px;background:#2a2410;color:var(--gold);font-weight:600;font-size:14px}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;cursor:pointer}
+.drop.has{border-color:var(--ok)}
+#sigPreview{max-width:100%;max-height:160px;background:#fff;border-radius:8px;margin-top:10px;display:none}
+.btn{display:inline-block;padding:13px 20px;border-radius:10px;border:0;font:600 16px Inter;cursor:pointer;text-decoration:none}
+.btn.gold{background:var(--gold);color:#1a1405}
+.btn.go{background:var(--ok);color:#06210f;width:100%;margin-top:22px;font-size:17px}
+.btn[disabled],.btn.off{opacity:.4;cursor:not-allowed;pointer-events:none}
+.need{list-style:none;padding:0;margin:16px 0 0;font-size:14px}
+.need li::before{content:"○ ";color:var(--muted)}.need li.done::before{content:"● ";color:var(--ok)}
+.msg{margin-top:14px;padding:12px;border-radius:10px;display:none}
+.msg.ok{display:block;background:#0f2a1d;color:var(--ok)}.msg.err{display:block;background:#2e1215;color:var(--err)}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}
+.box{width:22px;height:22px;border-radius:6px;border:2px solid var(--muted);flex:none;display:grid;place-items:center;font-size:14px}
+.row.signed .box{border-color:var(--warn);color:var(--warn)}
+.row.paid .box{border-color:var(--ok);background:var(--ok);color:#06210f}
+.row small{color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-bottom:12px}
+.count{font-family:Oswald;color:var(--gold);font-size:18px}
+footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
+@media(max-width:620px){.two,.facts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker"><img src="img/mark.png" alt="">Stratosphere · Class of 2026</div>
+  <h1>A wedding gift for Phil &amp; Sarah, from the founding crew</h1>
+  <p class="lead">Phil is getting married. We, the founding members of the Stratosphere, are giving Phil and Sarah an engraved silver signature tray, with every one of our signatures cut into it by hand. This page is for Stratosphere members only. Please do not share it, and do not mention it to Phil or Sarah. It is a surprise.</p>
+
+  <div class="card hero">
+    <img src="img/tray-photo.jpg" alt="Preview of the engraved silver signature tray">
+    <div class="two">
+      <img src="img/tray-artwork.jpg" alt="The engraving layout">
+      <div>
+        <h2>What the tray says</h2>
+        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every founding member's signature, with name and crew number.</p>
+        <p class="cap">This is a design preview. Suggestions are welcome, but time is short.</p>
+      </div>
+    </div>
+    <div class="facts" style="margin-top:16px">
+      <div class="fact"><b>$50</b><span>per signature</span></div>
+      <div class="fact"><b>Executive Awards</b><span>Engraver: Gilson's Signature Tray, each signature hand cut</span></div>
+      <div class="fact"><b>GoFundMe</b><span>Money goes straight to Executive Awards, never to a member's account</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How to sign on, in 4 steps</h2>
+    <ol class="steps">
+      <li>Pick your name. Your crew number fills in.</li>
+      <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF.</li>
+      <li>Tap the GoFundMe button and give $50, using the same name.</li>
+      <li>Paste your GoFundMe receipt or confirmation, then press Submit.</li>
+    </ol>
+  </div>
+
+  <div class="card" id="form">
+    <h2>Sign on</h2>
+    <label for="who">1 · Your name</label>
+    <select id="who"><option value="">Loading the roster…</option></select>
+    <div id="crewOut"></div>
+    <label for="full">Your full name, exactly as it should be engraved <span class="hint">(first and last)</span></label>
+    <input type="text" id="full" maxlength="120" autocomplete="name">
+
+    <label>2 · Your signature</label>
+    <div class="drop" id="drop">Tap to choose a photo or scan of your signature<br><span class="hint">PNG, JPG or PDF · black ink on white paper works best</span></div>
+    <input type="file" id="file" accept="image/png,image/jpeg,application/pdf" hidden>
+    <img id="sigPreview" alt="Your signature">
+
+    <label>3 · Pay $50 on GoFundMe</label>
+    <a class="btn gold" id="gfm" target="_blank" rel="noopener">Open GoFundMe</a>
+    <div class="hint" id="gfmNote" style="margin-top:6px"></div>
+
+    <label for="receipt">4 · Your GoFundMe receipt or confirmation <span class="hint">(paste it from your GoFundMe email)</span></label>
+    <input type="text" id="receipt" maxlength="200" placeholder="Paste here after you give">
+
+    <ul class="need">
+      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">GoFundMe opened</li><li id="n4">Receipt pasted</li>
+    </ul>
+    <button class="btn go" id="submit" disabled>Submit my signature</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="card">
+    <h2>Who's in <span class="count" id="count"></span></h2>
+    <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ signed, payment being checked</span><span style="color:var(--ok)">✓ signed and paid</span></div>
+    <div class="board" id="board"></div>
+  </div>
+
+  <footer>Organized by Fred Gomberg (Crew #54) and Corina Cisneros (Crew #5)</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+const SB='https://ihtddoaefacyovcxcqrh.supabase.co', KEY='sb_publishable_hlkXEbBKyp31yatdkZ7CuA_I93iqqBI';
+const GOFUNDME_URL=''; // set once the fundraiser exists
+const H={apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'};
+const $=id=>document.getElementById(id);
+let roster=[],sig=null,opened=false;
+try{opened=sessionStorage.getItem('gfmOpened')==='1'}catch(e){}
+
+async function load(){
+  const r=await fetch(SB+'/rest/v1/rpc/strato_status',{method:'POST',headers:H,body:'{}'});
+  roster=await r.json();
+  const b=$('board');b.innerHTML='';
+  let s=0,p=0;
+  roster.forEach(m=>{
+    if(m.signed)s++; if(m.paid)p++;
+    const d=document.createElement('div');d.className='row'+(m.paid?' paid':m.signed?' signed':'');
+    const box=document.createElement('span');box.className='box';box.textContent=m.paid?'✓':m.signed?'✎':'';
+    const t=document.createElement('span');t.textContent=m.name+' ';
+    const c=document.createElement('small');c.textContent=m.crew?'Crew #'+m.crew:'';
+    t.appendChild(c);d.append(box,t);b.appendChild(d);
+  });
+  $('count').textContent=s+' of '+roster.length+' signed · '+p+' paid';
+  const sel=$('who'),cur=sel.value;sel.innerHTML='<option value="">Choose your name</option>';
+  roster.filter(m=>!m.signed).forEach(m=>{const o=document.createElement('option');o.value=m.roster_id;o.textContent=m.name+(m.crew?'  ·  Crew #'+m.crew:'');sel.appendChild(o)});
+  sel.value=cur; check();
+}
+function check(){
+  const m=roster.find(x=>String(x.roster_id)===$('who').value);
+  $('crewOut').innerHTML=m?'<span class="crewtag">'+(m.crew?'Crew #'+m.crew:'Crew number to be assigned')+'</span>':'';
+  const ok=[!!m&&$('full').value.trim().length>=3,!!sig,opened,$('receipt').value.trim().length>=2];
+  ['n1','n2','n3','n4'].forEach((id,i)=>$(id).classList.toggle('done',ok[i]));
+  $('submit').disabled=!ok.every(Boolean);
+}
+$('who').onchange=()=>{const m=roster.find(x=>String(x.roster_id)===$('who').value);if(m&&!$('full').value)$('full').value=m.name;check()};
+$('full').oninput=check;$('receipt').oninput=check;
+
+if(GOFUNDME_URL){$('gfm').href=GOFUNDME_URL;$('gfm').onclick=()=>{opened=true;try{sessionStorage.setItem('gfmOpened','1')}catch(e){};setTimeout(check,300)}}
+else{$('gfm').classList.add('off');$('gfmNote').textContent='The GoFundMe link goes live here shortly.'}
+
+$('drop').onclick=()=>$('file').click();
+$('file').onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;
+  try{
+    let src;
+    if(f.type==='application/pdf'){
+      pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;const pg=await pdf.getPage(1);
+      const v=pg.getViewport({scale:2});const c=document.createElement('canvas');c.width=v.width;c.height=v.height;
+      const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:v}).promise;src=c;
+    }else{src=await createImageBitmap(f)}
+    let w=Math.min(1000,src.width),q=.85,out;
+    do{const h=Math.round(src.height*w/src.width),c=document.createElement('canvas');c.width=w;c.height=h;
+      const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(src,0,0,w,h);
+      out=c.toDataURL('image/jpeg',q);w=Math.round(w*.8);q=Math.max(.6,q-.05)}while(out.length>350000&&w>200);
+    sig=out;$('sigPreview').src=sig;$('sigPreview').style.display='block';$('drop').classList.add('has');$('drop').firstChild.textContent='Signature added. Tap to replace it';
+  }catch(err){sig=null;show('That file could not be read. Please try a PNG or JPG photo of your signature.',false)}
+  check();
+};
+function show(t,ok){const m=$('msg');m.textContent=t;m.className='msg '+(ok?'ok':'err')}
+$('submit').onclick=async()=>{
+  const m=roster.find(x=>String(x.roster_id)===$('who').value);
+  $('submit').disabled=true;$('submit').textContent='Sending…';
+  const path='sig/'+crypto.randomUUID()+'.jpg';
+  const up=await fetch(SB+'/storage/v1/object/strato-sig/'+path,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'image/jpeg'},body:await (await fetch(sig)).blob()});
+  const r=!up.ok?up:await fetch(SB+'/rest/v1/strato_signups',{method:'POST',headers:{...H,Prefer:'return=minimal'},
+    body:JSON.stringify({roster_id:m.roster_id,full_name:$('full').value.trim(),crew:m.crew,receipt:$('receipt').value.trim(),signature:path})});
+  $('submit').textContent='Submit my signature';
+  if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your GoFundMe gift is matched.',true);
+    sig=null;$('full').value='';$('receipt').value='';$('sigPreview').style.display='none';$('who').value='';load();}
+  else{const t=await r.text();show(/duplicate|unique/i.test(t)?'This name has already signed. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
+};
+load();
+</script>
+</body>
+</html>
