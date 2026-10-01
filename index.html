@@ -67,11 +67,12 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
       <img src="img/tray-artwork.jpg" alt="The engraving layout">
       <div>
         <h2>What the tray says</h2>
-        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every founding member's signature, with name and crew number.</p>
+        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every founding member's signature, with name and crew number, and below them: <i>and the whole Stratosphere Class of 2026</i>.</p>
         <p class="cap">This is a design preview. Suggestions are welcome, but time is short.</p>
       </div>
     </div>
     <div class="facts" style="margin-top:16px">
+      <div class="fact"><b>Deadline</b><span>11:59 PM Eastern, Wednesday Oct 7, 2026. Only signatures in by then go on the tray. Completely voluntary.</span></div>
       <div class="fact"><b>$75</b><span>per signature: $60 engraves your signature, $15 goes toward the tray (about $400, depending on its size and how many of us sign)</span></div>
       <div class="fact"><b>Executive Awards</b><span>Engraver: Gilson's Signature Tray, each signature hand cut</span></div>
       <div class="fact"><b>PayPal</b><span>A group-gift pool. No fee from a bank account or PayPal balance; cards carry a fee. No PayPal account needed.</span></div>
@@ -84,7 +85,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
       <li>Pick your name. Your crew number fills in.</li>
       <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF.</li>
       <li>Tap the PayPal button and give $75, using the same name.</li>
-      <li>Paste your PayPal receipt or confirmation, then press Submit.</li>
+      <li>PayPal emails you a confirmation. Paste the Transaction ID from that email (17 letters and numbers), then press Submit.</li>
     </ol>
   </div>
 
@@ -105,11 +106,11 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <a class="btn gold" id="gfm" target="_blank" rel="noopener">Open PayPal</a>
     <div class="hint" id="gfmNote" style="margin-top:6px">Pay by card, no account needed: choose Contribute as a Guest (even if you have PayPal), enter any card, including Amex, and <b>untick &ldquo;Create a PayPal account&rdquo;</b> before you press Continue.</div>
 
-    <label for="receipt">4 · Your PayPal receipt or confirmation <span class="hint">(copy it from PayPal's confirmation)</span></label>
-    <input type="text" id="receipt" maxlength="200" placeholder="Paste here after you give">
+    <label for="receipt">4 · Your PayPal Transaction ID <span class="hint">(in PayPal's email to you, 17 letters and numbers, like 1AB23456CD789012E)</span></label>
+    <input type="text" id="receipt" maxlength="200" placeholder="Paste the Transaction ID here">
 
     <ul class="need">
-      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">PayPal opened</li><li id="n4">Receipt pasted</li>
+      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">PayPal opened</li><li id="n4">Transaction ID pasted</li>
     </ul>
     <button class="btn go" id="submit" disabled>Submit my signature</button>
     <div class="msg" id="msg"></div>
