@@ -103,7 +103,8 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <img id="sigPreview" alt="Your signature">
 
     <label>3 · Give $75 on PayPal</label>
-    <a class="btn gold" id="gfm" target="_blank" rel="noopener">Open PayPal</a>
+    <a class="btn gold off" id="gfm" target="_blank" rel="noopener">Open PayPal</a>
+    <div class="hint" id="gfmLock" style="margin-top:6px;font-weight:600">Upload your signature first. Then this button turns on.</div>
     <div class="hint" id="gfmNote" style="margin-top:6px">Pay by card, no account needed: choose Contribute as a Guest (even if you have PayPal), enter any card, including Amex, and <b>untick &ldquo;Create a PayPal account&rdquo;</b> before you press Continue.</div>
 
     <label for="receipt">4 · PayPal Transaction ID <span class="hint">(optional. No need to put in a receipt: Corina knows when you paid)</span></label>
@@ -155,7 +156,11 @@ async function load(){
 function check(){
   const m=roster.find(x=>String(x.roster_id)===$('who').value);
   $('crewOut').innerHTML=m?'<span class="crewtag">'+(m.crew?'Crew #'+m.crew:'Crew number to be assigned')+'</span>':'';
-  const ok=[!!m&&$('full').value.trim().length>=3,!!sig,opened];
+  const paidAlready=!!m&&m.paid;
+  if(PAYPAL_URL){$('gfm').classList.toggle('off',!sig||paidAlready)}
+  $('gfmLock').textContent=paidAlready?'Your gift is already in. No need to pay again.':(sig?'':'Upload your signature first. Then this button turns on.');
+  $('n3').textContent=paidAlready?'Already paid':'PayPal opened';
+  const ok=[!!m&&$('full').value.trim().length>=3,!!sig,opened||paidAlready];
   ['n1','n2','n3'].forEach((id,i)=>$(id).classList.toggle('done',ok[i]));
   $('submit').disabled=!ok.every(Boolean);
 }
