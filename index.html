@@ -80,7 +80,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
   </div>
 
   <div class="card">
-    <h2>How to sign on, in 4 steps</h2>
+    <h2>How to add your signature, in 4 steps</h2>
     <ol class="steps">
       <li>Pick your name. Your crew number fills in.</li>
       <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF.</li>
@@ -90,7 +90,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
   </div>
 
   <div class="card" id="form">
-    <h2>Sign on</h2>
+    <h2>Add your signature</h2>
     <label for="who">1 · Your name</label>
     <select id="who"><option value="">Loading the roster…</option></select>
     <div id="crewOut"></div>
@@ -119,7 +119,13 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
 
   <div class="card">
     <h2>Who's in <span class="count" id="count"></span></h2>
-    <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ signed, payment being checked</span><span style="color:var(--ok)">$ paid, signature still needed</span><span style="color:var(--ok)">✓ signed and paid</span></div>
+    <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ signature uploaded, payment being checked</span><span style="color:var(--ok)">$ paid, signature still needed</span><span style="color:var(--ok)">✓ signature uploaded and paid</span></div>
+    <div id="progress" style="margin:10px 0 14px">
+      <div id="progText" style="font-weight:700;font-size:1.05em"></div>
+      <div style="position:relative;height:14px;background:#e6e2d8;border-radius:7px;margin:8px 0 6px;overflow:hidden"><div id="progBar" style="height:100%;width:0;background:var(--ok);border-radius:7px"></div><div id="progGoal" style="position:absolute;top:0;bottom:0;width:2px;background:#333"></div></div>
+      <div class="hint" id="progNote"></div>
+      <div class="hint" style="margin-top:6px">Not everyone will join, and that is fine: the tray also carries the line <i>and the whole Stratosphere Class of 2026</i>, so every one of us is honored.</div>
+    </div>
     <div class="board" id="board"></div>
   </div>
 
@@ -148,7 +154,12 @@ async function load(){
     const c=document.createElement('small');c.textContent=m.crew?'Crew #'+m.crew:'';
     t.appendChild(c);d.append(box,t);b.appendChild(d);
   });
-  $('count').textContent=s+' of '+roster.length+' signed · '+p+' paid';
+  $('count').textContent=s+' of '+roster.length+' signatures uploaded · '+p+' paid';
+  const goal=Math.ceil(roster.length/2), left=roster.length-p;
+  $('progText').textContent=p+' of '+roster.length+' paid · '+left+' to go';
+  $('progBar').style.width=Math.min(100,p/roster.length*100)+'%';
+  $('progGoal').style.left=(goal/roster.length*100)+'%';
+  $('progNote').textContent=p>=goal?'We reached our goal of half the class ('+goal+')! Every extra signature makes the tray even better.':'Our goal: at least half the class, '+goal+' of us. '+(goal-p)+' more to reach it.';
   const sel=$('who'),cur=sel.value;sel.innerHTML='<option value="">Choose your name</option>';
   roster.filter(m=>!m.signed).forEach(m=>{const o=document.createElement('option');o.value=m.roster_id;o.textContent=m.name+(m.crew?'  ·  Crew #'+m.crew:'');sel.appendChild(o)});
   sel.value=cur; check();
@@ -201,7 +212,7 @@ $('submit').onclick=async()=>{
   $('submit').textContent='Submit my signature';
   if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your PayPal gift is matched.',true);
     sig=null;$('full').value='';$('receipt').value='';$('sigPreview').style.display='none';$('who').value='';load();}
-  else{const t=await r.text();show(/duplicate|unique/i.test(t)?'This name has already signed. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
+  else{const t=await r.text();show(/duplicate|unique/i.test(t)?'This name already has a signature uploaded. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
 };
 load();
 </script>
