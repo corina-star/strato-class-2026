@@ -83,7 +83,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <h2>How to add your signature, in 4 steps</h2>
     <ol class="steps">
       <li>Pick your name. Your crew number fills in.</li>
-      <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF.</li>
+      <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF. If it won't upload, email the photo to <a href="mailto:corina@cisnerosrealtygroup.com" style="color:var(--gold)">corina@cisnerosrealtygroup.com</a> and Corina will add it for you.</li>
       <li>Tap the PayPal button and give $75, using the same name.</li>
       <li>Press Submit. No need to paste a receipt: Corina sees every gift as it comes in and marks you paid.</li>
     </ol>
@@ -125,8 +125,11 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <h2>Who's in <span class="count" id="count"></span></h2>
     <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ signature uploaded, payment being checked</span><span style="color:var(--ok)">$ paid, signature still needed</span><span style="color:var(--ok)">✓ signature uploaded and paid</span></div>
     <div id="progress" style="margin:10px 0 14px">
+      <div id="moneyText" style="font-weight:700;font-size:1.05em"></div>
+      <div style="height:14px;background:#e6e2d8;border-radius:7px;margin:8px 0 16px;overflow:hidden"><div id="moneyBar" style="height:100%;width:0;background:var(--gold);border-radius:7px"></div></div>
       <div id="progText" style="font-weight:700;font-size:1.05em"></div>
-      <div style="position:relative;height:14px;background:#e6e2d8;border-radius:7px;margin:8px 0 6px;overflow:hidden"><div id="progBar" style="height:100%;width:0;background:var(--ok);border-radius:7px"></div><div id="progGoal" style="position:absolute;top:0;bottom:0;width:2px;background:#333"></div></div>
+      <div style="position:relative;height:14px;background:#e6e2d8;border-radius:7px;margin:8px 0 6px;overflow:hidden;display:flex"><div id="segBoth" style="height:100%;width:0;background:var(--ok)"></div><div id="segPaid" style="height:100%;width:0;background:#9be7c4"></div><div id="segSig" style="height:100%;width:0;background:var(--warn)"></div><div id="progGoal" style="position:absolute;top:0;bottom:0;width:2px;background:#333"></div></div>
+      <div class="hint" id="progKey"></div>
       <div class="hint" id="progNote"></div>
       <div class="hint" style="margin-top:6px">Not everyone will join, and that is fine: the tray also carries the line <i>and the whole Stratosphere Class of 2026</i>, so every one of us is honored.</div>
     </div>
@@ -160,8 +163,12 @@ async function load(){
   });
   $('count').textContent=s+' of '+roster.length+' signatures uploaded · '+p+' paid';
   const goal=Math.ceil(roster.length/2), left=roster.length-p;
-  $('progText').textContent=p+' of '+roster.length+' paid · '+left+' to go';
-  $('progBar').style.width=Math.min(100,p/roster.length*100)+'%';
+  const n=roster.length, both=roster.filter(m=>m.paid&&m.signed).length, paidOnly=p-both, sigOnly=s-both, none=n-both-paidOnly-sigOnly, raised=p*75;
+  $('moneyText').textContent='$'+raised.toLocaleString('en-US')+' raised of $3,000';
+  $('moneyBar').style.width=Math.min(100,raised/3000*100)+'%';
+  $('progText').textContent=p+' of '+n+' paid · '+left+' to go';
+  $('segBoth').style.width=(both/n*100)+'%';$('segPaid').style.width=(paidOnly/n*100)+'%';$('segSig').style.width=(sigOnly/n*100)+'%';
+  $('progKey').textContent=both+' signature uploaded and paid · '+paidOnly+' paid, signature still needed'+(sigOnly?' · '+sigOnly+' signature uploaded, payment being checked':'')+' · '+none+' not yet';
   $('progGoal').style.left=(goal/roster.length*100)+'%';
   $('progNote').textContent=p>=goal?'We reached our goal of half the class ('+goal+')! Every extra signature makes the tray even better.':'Our goal: at least half the class, '+goal+' of us. '+(goal-p)+' more to reach it.';
   const sel=$('who'),cur=sel.value;sel.innerHTML='<option value="">Choose your name</option>';
