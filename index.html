@@ -59,38 +59,37 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
 <div class="wrap">
   <div class="kicker"><img src="img/mark.png" alt="">Stratosphere · Class of 2026</div>
   <h1>A wedding gift for Phil &amp; Sarah, from the Stratosphere Class of 2026</h1>
-  <p class="lead">Phil is getting married. We, the members of the Stratosphere Class of 2026, are giving Phil and Sarah an engraved pewter signature tray, with every one of our signatures cut into it by hand. This page is for Stratosphere members only. Please do not share it, and do not mention it to Phil or Sarah. It is a surprise.</p>
+  <p class="lead">Phil is getting married. We, the members of the Stratosphere Class of 2026, are giving Phil and Sarah an engraved pewter tray with every member's name and crew number, and the signature of everyone who adds one, cut in by hand. This page is for Stratosphere members only. Please do not share it, and do not mention it to Phil or Sarah. It is a surprise.</p>
 
   <div class="card hero">
-    <img src="img/tray-photo.jpg" alt="Preview of the engraved pewter signature tray">
+    <img src="img/tray-plate.jpg" alt="The tray layout: Phil and Sarah Stringer, with every member's name and crew number">
     <div class="two">
-      <img src="img/tray-artwork.jpg" alt="The engraving layout">
       <div>
         <h2>What the tray says</h2>
-        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every member's signature, with name and crew number, and below them: <i>and the whole Stratosphere Class of 2026</i>.</p>
-        <p class="cap">This is a design preview. Suggestions are welcome, but time is short.</p>
+        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every member's name and crew number, in crew order, with their signature above it if they add one. Wedding date: October 31, 2026.</p>
+        <p class="cap">This is the real layout. It updates as people join. A signature is optional: you can have just your name engraved.</p>
       </div>
     </div>
     <div class="facts" style="margin-top:16px">
       <div class="fact"><b>Deadline</b><span>11:59 PM Eastern, Wednesday Oct 7, 2026. Only signatures in by then go on the tray. Completely voluntary.</span></div>
-      <div class="fact"><b>$75</b><span>per signature: $60 engraves your signature, $15 goes toward the tray (about $400, depending on its size and how many of us sign)</span></div>
+      <div class="fact"><b>$75 suggested</b><span>What we estimated for the engraving and the tray. Anything left over, the class decides together what to do with it.</span></div>
       <div class="fact"><b>Executive Awards</b><span>Engraver: Gilson's Signature Tray, each signature hand cut</span></div>
       <div class="fact"><b>PayPal</b><span>A group-gift pool. No fee from a bank account or PayPal balance; cards carry a fee. No PayPal account needed.</span></div>
     </div>
   </div>
 
   <div class="card">
-    <h2>How to add your signature, in 4 steps</h2>
+    <h2>How to join, in 4 steps</h2>
     <ol class="steps">
       <li>Pick your name. Your crew number fills in.</li>
-      <li>Upload your signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF. If it won't upload, email the photo to <a href="mailto:corina@cisnerosrealtygroup.com" style="color:var(--gold)">corina@cisnerosrealtygroup.com</a> and Corina will add it for you.</li>
-      <li>Tap the PayPal button and give $75, using the same name.</li>
+      <li>Upload your signature, or tick &ldquo;name only&rdquo; if you would rather not. Signature: black pen on plain white paper, photographed or scanned. PNG, JPG or PDF. If it won't upload, email the photo to <a href="mailto:corina@cisnerosrealtygroup.com" style="color:var(--gold)">corina@cisnerosrealtygroup.com</a> and Corina will add it for you.</li>
+      <li>Tap the PayPal button and give, using the same name ($75 suggested).</li>
       <li>Press Submit. No need to paste a receipt: Corina sees every gift as it comes in and marks you paid.</li>
     </ol>
   </div>
 
   <div class="card" id="form">
-    <h2>Add your signature</h2>
+    <h2>Add your name</h2>
     <label for="who">1 · Your name</label>
     <select id="who"><option value="">Loading the roster…</option></select>
     <div id="crewOut"></div>
@@ -101,29 +100,30 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <label for="full">Your full name, exactly as it should be engraved <span class="hint">(first and last)</span></label>
     <input type="text" id="full" maxlength="120" autocomplete="name">
 
-    <label>2 · Your signature</label>
+    <label>2 · Your signature <span class="hint">(optional)</span></label>
     <div class="drop" id="drop">Tap to choose a photo or scan of your signature<br><span class="hint">PNG, JPG or PDF · black ink on white paper works best</span></div>
     <input type="file" id="file" accept="image/png,image/jpeg,application/pdf" hidden>
     <img id="sigPreview" alt="Your signature">
+    <label style="display:flex;gap:8px;align-items:center;font-weight:500;margin-top:10px"><input type="checkbox" id="nameOnly" style="width:auto"> Engrave my name only, no signature</label>
 
-    <label>3 · Give $75 on PayPal</label>
+    <label>3 · Give on PayPal <span class="hint">($75 suggested)</span></label>
     <a class="btn gold off" id="gfm" target="_blank" rel="noopener">Open PayPal</a>
-    <div class="hint" id="gfmLock" style="margin-top:6px;font-weight:600">Upload your signature first. Then this button turns on.</div>
+    <div class="hint" id="gfmLock" style="margin-top:6px;font-weight:600">Upload your signature or tick &ldquo;name only&rdquo; first. Then this button turns on.</div>
     <div class="hint" id="gfmNote" style="margin-top:6px">Pay by card, no account needed: choose Contribute as a Guest (even if you have PayPal), enter any card, including Amex, and <b>untick &ldquo;Create a PayPal account&rdquo;</b> before you press Continue.</div>
 
     <label for="receipt">4 · PayPal Transaction ID <span class="hint">(optional. No need to put in a receipt: Corina knows when you paid)</span></label>
     <input type="text" id="receipt" maxlength="200" placeholder="Optional">
 
     <ul class="need">
-      <li id="n1">Name picked</li><li id="n2">Signature uploaded</li><li id="n3">PayPal opened</li>
+      <li id="n1">Name picked</li><li id="n2">Signature or name only</li><li id="n3">PayPal opened</li>
     </ul>
-    <button class="btn go" id="submit" disabled>Submit my signature</button>
+    <button class="btn go" id="submit" disabled>Submit</button>
     <div class="msg" id="msg"></div>
   </div>
 
   <div class="card">
     <h2>Who's in <span class="count" id="count"></span></h2>
-    <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ signature uploaded, payment being checked</span><span style="color:var(--ok)">$ paid, signature still needed</span><span style="color:var(--ok)">✓ signature uploaded and paid</span></div>
+    <div class="legend"><span>☐ not yet</span><span style="color:var(--warn)">✎ in, payment being checked</span><span style="color:var(--ok)">$ paid, signature or name-only choice still needed</span><span style="color:var(--ok)">✓ in and paid</span></div>
     <div id="progress" style="margin:10px 0 14px">
       <div id="moneyText" style="font-weight:700;font-size:1.05em"></div>
       <div style="height:14px;background:#e6e2d8;border-radius:7px;margin:8px 0 16px;overflow:hidden"><div id="moneyBar" style="height:100%;width:0;background:var(--gold);border-radius:7px"></div></div>
@@ -154,7 +154,7 @@ async function load(){
   const b=$('board');b.innerHTML='';
   let s=0,p=0;
   roster.forEach(m=>{
-    if(m.signed)s++; if(m.paid)p++;
+    if(m.signed&&!m.name_only)s++; if(m.paid)p++;
     const d=document.createElement('div');d.className='row'+(m.paid?' paid':m.signed?' signed':'');
     const box=document.createElement('span');box.className='box';box.textContent=m.paid?(m.signed?'✓':'$'):m.signed?'✎':'';
     const t=document.createElement('span');t.textContent=m.name+' ';
@@ -163,12 +163,13 @@ async function load(){
   });
   $('count').textContent=s+' of '+roster.length+' signatures uploaded · '+p+' paid';
   const goal=Math.ceil(roster.length/2), left=roster.length-p;
-  const n=roster.length, both=roster.filter(m=>m.paid&&m.signed).length, paidOnly=p-both, sigOnly=s-both, none=n-both-paidOnly-sigOnly, raised=p*75;
+  const n=roster.length, both=roster.filter(m=>m.paid&&m.signed).length, paidOnly=p-both, sigOnly=roster.filter(m=>m.signed&&!m.paid).length, none=n-both-paidOnly-sigOnly;
+  let raised=p*75;try{const rr=await fetch(SB+'/rest/v1/rpc/strato_raised',{method:'POST',headers:H,body:'{}'});if(rr.ok)raised=Number(await rr.json())}catch(e){}
   $('moneyText').textContent='$'+raised.toLocaleString('en-US')+' raised of $3,000';
   $('moneyBar').style.width=Math.min(100,raised/3000*100)+'%';
   $('progText').textContent=p+' of '+n+' paid · '+left+' to go';
   $('segBoth').style.width=(both/n*100)+'%';$('segPaid').style.width=(paidOnly/n*100)+'%';$('segSig').style.width=(sigOnly/n*100)+'%';
-  $('progKey').textContent=both+' signature uploaded and paid · '+paidOnly+' paid, signature still needed'+(sigOnly?' · '+sigOnly+' signature uploaded, payment being checked':'')+' · '+none+' not yet';
+  $('progKey').textContent=both+' in and paid · '+paidOnly+' paid, signature or name-only choice still needed'+(sigOnly?' · '+sigOnly+' in, payment being checked':'')+' · '+none+' not yet';
   $('progGoal').style.left=(goal/roster.length*100)+'%';
   $('progNote').textContent=p>=goal?'We reached our goal of half the class ('+goal+')! Every extra signature makes the tray even better.':'Our goal: at least half the class, '+goal+' of us. '+(goal-p)+' more to reach it.';
   const sel=$('who'),cur=sel.value;sel.innerHTML='<option value="">Choose your name</option>';
@@ -181,15 +182,16 @@ function check(){
   $('newBox').style.display=isNew?'block':'none';
   $('crewOut').innerHTML=m?'<span class="crewtag">'+(m.crew?'Crew #'+m.crew:'Crew number to be assigned')+'</span>':(isNew?'<span class="hint">Welcome! Type your full name below, exactly as it should be engraved. Corina adds you to the list.</span>':'');
   const paidAlready=!!m&&m.paid;
-  if(PAYPAL_URL){$('gfm').classList.toggle('off',!sig||paidAlready)}
-  $('gfmLock').textContent=paidAlready?'Your gift is already in. No need to pay again.':(sig?'':'Upload your signature first. Then this button turns on.');
+  const ready=!!sig||$('nameOnly').checked;
+  if(PAYPAL_URL){$('gfm').classList.toggle('off',!ready||paidAlready)}
+  $('gfmLock').textContent=paidAlready?'Your gift is already in. No need to pay again.':(ready?'':'Upload your signature or tick \u201cname only\u201d first. Then this button turns on.');
   $('n3').textContent=paidAlready?'Already paid':'PayPal opened';
-  const ok=[(!!m||isNew)&&$('full').value.trim().length>=3,!!sig,opened||paidAlready];
+  const ok=[(!!m||isNew)&&$('full').value.trim().length>=3,ready,opened||paidAlready];
   ['n1','n2','n3'].forEach((id,i)=>$(id).classList.toggle('done',ok[i]));
   $('submit').disabled=!ok.every(Boolean);
 }
 $('who').onchange=()=>{const m=roster.find(x=>String(x.roster_id)===$('who').value);if(m&&!$('full').value)$('full').value=m.name;check()};
-$('full').oninput=check;$('receipt').oninput=check;
+$('full').oninput=check;$('receipt').oninput=check;$('nameOnly').onchange=check;
 
 if(PAYPAL_URL){$('gfm').href=PAYPAL_URL;$('gfm').onclick=()=>{opened=true;try{sessionStorage.setItem('gfmOpened','1')}catch(e){};setTimeout(check,300)}}
 else{$('gfm').classList.add('off');$('gfmNote').textContent='The PayPal link goes live here shortly.'}
@@ -216,17 +218,18 @@ $('file').onchange=async e=>{
 function show(t,ok){const m=$('msg');m.textContent=t;m.className='msg '+(ok?'ok':'err')}
 $('submit').onclick=async()=>{
   const m=roster.find(x=>String(x.roster_id)===$('who').value), isNew=$('who').value==='new';
-  if((!m&&!isNew)||!sig){show('Please pick your name and upload your signature first.',false);return}
+  const nameOnly=!sig&&$('nameOnly').checked;
+  if((!m&&!isNew)||(!sig&&!nameOnly)){show('Please pick your name, then upload your signature or tick name only.',false);return}
   $('submit').disabled=true;$('submit').textContent='Sending…';
-  const path='sig/'+crypto.randomUUID()+'.jpg';
-  const up=await fetch(SB+'/storage/v1/object/strato-sig/'+path,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'image/jpeg'},body:await (await fetch(sig)).blob()});
+  const path=nameOnly?null:'sig/'+crypto.randomUUID()+'.jpg';
+  const up=nameOnly?{ok:true}:await fetch(SB+'/storage/v1/object/strato-sig/'+path,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'image/jpeg'},body:await (await fetch(sig)).blob()});
   const nc=parseInt($('newCrew').value,10);
   const r=!up.ok?up:(isNew?await fetch(SB+'/rest/v1/rpc/strato_new_member',{method:'POST',headers:H,
     body:JSON.stringify({p_name:$('full').value.trim(),p_crew:isNaN(nc)?null:nc,p_receipt:$('receipt').value.trim()||null,p_signature:path})})
     :await fetch(SB+'/rest/v1/strato_signups',{method:'POST',headers:{...H,Prefer:'return=minimal'},
     body:JSON.stringify({roster_id:m.roster_id,full_name:$('full').value.trim(),crew:m.crew,receipt:$('receipt').value.trim()||null,signature:path})}));
-  $('submit').textContent='Submit my signature';
-  if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your PayPal gift is matched.',true);
+  $('submit').textContent='Submit';
+  if(r.ok){show('Thank you, '+$('full').value.trim()+'. You are in'+(nameOnly?' (name only)':', signature and all')+'. Your box turns green once your PayPal gift is matched.',true);$('nameOnly').checked=false;
     sig=null;$('full').value='';$('receipt').value='';$('newCrew').value='';$('sigPreview').style.display='none';$('who').value='';load();}
   else{const t=await r.text();show(/duplicate name/i.test(t)?'That name is already on the list. Please choose it from the menu.':/duplicate|unique/i.test(t)?'This name already has a signature uploaded. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
 };
