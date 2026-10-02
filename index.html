@@ -58,8 +58,8 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
 <body>
 <div class="wrap">
   <div class="kicker"><img src="img/mark.png" alt="">Stratosphere · Class of 2026</div>
-  <h1>A wedding gift for Phil &amp; Sarah, from the founding crew</h1>
-  <p class="lead">Phil is getting married. We, the founding members of the Stratosphere, are giving Phil and Sarah an engraved pewter signature tray, with every one of our signatures cut into it by hand. This page is for Stratosphere members only. Please do not share it, and do not mention it to Phil or Sarah. It is a surprise.</p>
+  <h1>A wedding gift for Phil &amp; Sarah, from the Stratosphere Class of 2026</h1>
+  <p class="lead">Phil is getting married. We, the members of the Stratosphere Class of 2026, are giving Phil and Sarah an engraved pewter signature tray, with every one of our signatures cut into it by hand. This page is for Stratosphere members only. Please do not share it, and do not mention it to Phil or Sarah. It is a surprise.</p>
 
   <div class="card hero">
     <img src="img/tray-photo.jpg" alt="Preview of the engraved pewter signature tray">
@@ -67,7 +67,7 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
       <img src="img/tray-artwork.jpg" alt="The engraving layout">
       <div>
         <h2>What the tray says</h2>
-        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every founding member's signature, with name and crew number, and below them: <i>and the whole Stratosphere Class of 2026</i>.</p>
+        <p style="margin:0">PHIL, Phil's logo, SARAH on one line. STRINGER below. Phil's logo, large. A message of thanks from all of us, being written by Fred Gomberg. Then every member's signature, with name and crew number, and below them: <i>and the whole Stratosphere Class of 2026</i>.</p>
         <p class="cap">This is a design preview. Suggestions are welcome, but time is short.</p>
       </div>
     </div>
@@ -94,6 +94,10 @@ footer{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
     <label for="who">1 · Your name</label>
     <select id="who"><option value="">Loading the roster…</option></select>
     <div id="crewOut"></div>
+    <div id="newBox" style="display:none">
+      <label for="newCrew">Your crew number <span class="hint">(if you have one)</span></label>
+      <input type="number" id="newCrew" min="1" max="999" inputmode="numeric" placeholder="Optional">
+    </div>
     <label for="full">Your full name, exactly as it should be engraved <span class="hint">(first and last)</span></label>
     <input type="text" id="full" maxlength="120" autocomplete="name">
 
@@ -162,16 +166,18 @@ async function load(){
   $('progNote').textContent=p>=goal?'We reached our goal of half the class ('+goal+')! Every extra signature makes the tray even better.':'Our goal: at least half the class, '+goal+' of us. '+(goal-p)+' more to reach it.';
   const sel=$('who'),cur=sel.value;sel.innerHTML='<option value="">Choose your name</option>';
   roster.filter(m=>!m.signed).forEach(m=>{const o=document.createElement('option');o.value=m.roster_id;o.textContent=m.name+(m.crew?'  ·  Crew #'+m.crew:'');sel.appendChild(o)});
+  {const o=document.createElement('option');o.value='new';o.textContent="My name isn't on the list";sel.appendChild(o)}
   sel.value=cur; check();
 }
 function check(){
-  const m=roster.find(x=>String(x.roster_id)===$('who').value);
-  $('crewOut').innerHTML=m?'<span class="crewtag">'+(m.crew?'Crew #'+m.crew:'Crew number to be assigned')+'</span>':'';
+  const m=roster.find(x=>String(x.roster_id)===$('who').value), isNew=$('who').value==='new';
+  $('newBox').style.display=isNew?'block':'none';
+  $('crewOut').innerHTML=m?'<span class="crewtag">'+(m.crew?'Crew #'+m.crew:'Crew number to be assigned')+'</span>':(isNew?'<span class="hint">Welcome! Type your full name below, exactly as it should be engraved. Corina adds you to the list.</span>':'');
   const paidAlready=!!m&&m.paid;
   if(PAYPAL_URL){$('gfm').classList.toggle('off',!sig||paidAlready)}
   $('gfmLock').textContent=paidAlready?'Your gift is already in. No need to pay again.':(sig?'':'Upload your signature first. Then this button turns on.');
   $('n3').textContent=paidAlready?'Already paid':'PayPal opened';
-  const ok=[!!m&&$('full').value.trim().length>=3,!!sig,opened||paidAlready];
+  const ok=[(!!m||isNew)&&$('full').value.trim().length>=3,!!sig,opened||paidAlready];
   ['n1','n2','n3'].forEach((id,i)=>$(id).classList.toggle('done',ok[i]));
   $('submit').disabled=!ok.every(Boolean);
 }
@@ -202,17 +208,20 @@ $('file').onchange=async e=>{
 };
 function show(t,ok){const m=$('msg');m.textContent=t;m.className='msg '+(ok?'ok':'err')}
 $('submit').onclick=async()=>{
-  const m=roster.find(x=>String(x.roster_id)===$('who').value);
-  if(!m||!sig){show('Please pick your name and upload your signature first.',false);return}
+  const m=roster.find(x=>String(x.roster_id)===$('who').value), isNew=$('who').value==='new';
+  if((!m&&!isNew)||!sig){show('Please pick your name and upload your signature first.',false);return}
   $('submit').disabled=true;$('submit').textContent='Sending…';
   const path='sig/'+crypto.randomUUID()+'.jpg';
   const up=await fetch(SB+'/storage/v1/object/strato-sig/'+path,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'image/jpeg'},body:await (await fetch(sig)).blob()});
-  const r=!up.ok?up:await fetch(SB+'/rest/v1/strato_signups',{method:'POST',headers:{...H,Prefer:'return=minimal'},
-    body:JSON.stringify({roster_id:m.roster_id,full_name:$('full').value.trim(),crew:m.crew,receipt:$('receipt').value.trim()||null,signature:path})});
+  const nc=parseInt($('newCrew').value,10);
+  const r=!up.ok?up:(isNew?await fetch(SB+'/rest/v1/rpc/strato_new_member',{method:'POST',headers:H,
+    body:JSON.stringify({p_name:$('full').value.trim(),p_crew:isNaN(nc)?null:nc,p_receipt:$('receipt').value.trim()||null,p_signature:path})})
+    :await fetch(SB+'/rest/v1/strato_signups',{method:'POST',headers:{...H,Prefer:'return=minimal'},
+    body:JSON.stringify({roster_id:m.roster_id,full_name:$('full').value.trim(),crew:m.crew,receipt:$('receipt').value.trim()||null,signature:path})}));
   $('submit').textContent='Submit my signature';
   if(r.ok){show('Thank you, '+$('full').value.trim()+'. Your signature is in. Your box turns green once your PayPal gift is matched.',true);
-    sig=null;$('full').value='';$('receipt').value='';$('sigPreview').style.display='none';$('who').value='';load();}
-  else{const t=await r.text();show(/duplicate|unique/i.test(t)?'This name already has a signature uploaded. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
+    sig=null;$('full').value='';$('receipt').value='';$('newCrew').value='';$('sigPreview').style.display='none';$('who').value='';load();}
+  else{const t=await r.text();show(/duplicate name/i.test(t)?'That name is already on the list. Please choose it from the menu.':/duplicate|unique/i.test(t)?'This name already has a signature uploaded. If that was not you, reply to Corina or Fred.':'Something went wrong. Please try again in a minute.',false);check()}
 };
 load();
 </script>
